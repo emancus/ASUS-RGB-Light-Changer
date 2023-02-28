@@ -5,6 +5,8 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FHidroSaphire%2FASUS-RGB-Light-Changer&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 [![HidroApproved](https://img.shields.io/badge/HidroSaphire-approved-blue)](https://github.com/HidroSaphire)
 
+## Download last version :floppy_disk: - [Click Here]
+
 ## What is it?
 Tired of having to open the slow "Armoury Crate" application every time to change the "Aura Effects" of your aRGB LEDs?
 Save your led configurations and change them at runtime with the very fast **ASUS RGB Light Changer** script!
@@ -24,3 +26,4 @@ the Armory Crate application again every time you want to change configuration!
 [Enrico Mancuso]: https://github.com/HidroSaphire
 [Batch]: https://en.wikipedia.org/wiki/Batch_file
 [Microsoft Windows]: https://en.wikipedia.org/wiki/Windows_11
+[Click Here]: https://github.com/HidroSaphire/ASUS-RGB-Light-Changer/releases/download/1.0/ASUS.RGB.Light.Changer.bat
