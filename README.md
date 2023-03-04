@@ -27,4 +27,4 @@ Call the .bat file with Admin Rights (needed for load a RGB Profile and restart 
 [Enrico Mancuso]: https://github.com/HidroSaphire
 [Batch]: https://en.wikipedia.org/wiki/Batch_file
 [Microsoft Windows]: https://en.wikipedia.org/wiki/Windows_11
-[Click Here]: https://github.com/HidroSaphire/ASUS-RGB-Light-Changer/releases/download/1.0/ASUS.RGB.Light.Changer.bat
+[Click Here]: https://github.com/HidroSaphire/ASUS-RGB-Light-Changer/releases/download/1.1/ASUS.RGB.Light.Changer.bat
