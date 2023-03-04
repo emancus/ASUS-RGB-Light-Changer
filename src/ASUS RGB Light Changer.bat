@@ -5,7 +5,7 @@
 
 ::----SET VARIABLES-----------------------------------------
 	SET version=v1.1
-	SET NameFolder="Hidro ASUS Light Changer2"
+	SET NameFolder="Hidro ASUS Light Changer"
 	SET ProfilePath=%AppData%\%NameFolder%
 	SET arg1=%~1
 	SET verboseMode=0
