@@ -4,8 +4,8 @@
 @echo off
 
 ::----SET VARIABLES-----------------------------------------
-	SET version=v1.0
-	SET NameFolder="Hidro ASUS Light Changer"
+	SET version=v1.1
+	SET NameFolder="Hidro ASUS Light Changer2"
 	SET ProfilePath=%AppData%\%NameFolder%
 	SET arg1=%~1
 	SET verboseMode=0
@@ -44,6 +44,7 @@
 
 
 
+
 ::----STARTING POINT----------------------------------------
 :InitialPoint
 	IF NOT EXIST %ProfilePath% MKDIR %ProfilePath%
@@ -61,6 +62,7 @@ SetLocal EnableDelayedexpansion
 	SET "FileName[!idx!]=%%~nxf"
  	SET "FilePath[!idx!]=%%~dpFf"
 )
+
 
 ::----Display array elements--------------------------------
 :DisplayArrayElements
@@ -107,16 +109,20 @@ ECHO [0] "Carica nuovo profilo RGB"
 
 
 
+
+
 ::-------------------------FUNCTION LOAD PROFILE------------
 :LoadNewProfile
-	IF EXIST %ProfilePath%\LastScript.xml (
-		ECHO [33m[ATTENZIONE][0m - Esiste già un profilo RGB chiamato "[32mLastScript.xml[0m"
+	ECHO Inserire il nome del nuovo profilo RGB [33m
+	SET /P newfilename=
+	ECHO [0m
+	IF EXIST %ProfilePath%\"%newfilename%".xml (
+		ECHO [33m[ATTENZIONE][0m - Esiste già un profilo RGB chiamato "[32m"%newfilename%".xml[0m"
 	)
 	IF EXIST C:\"Program Files (x86)"\LightingService\script\LastScript.xml (
-		COPY /-y C:\"Program Files (x86)"\LightingService\script\LastScript.xml %ProfilePath%\LastScript.xml
+		COPY /-y C:\"Program Files (x86)"\LightingService\script\LastScript.xml %ProfilePath%\"%newfilename%".xml
 		ECHO [32m[OK][0m - File Copiato
 		ECHO [0m
-		SLEEP 2
 		GOTO :CleanEnvironment		
 	) ELSE (
 		ECHO [33m[ATTENZIONE][0m - Nessun profilo RGB esistente
@@ -124,7 +130,9 @@ ECHO [0] "Carica nuovo profilo RGB"
 		ECHO Assicurarsi di aver installato "Armoury Crate" e che esista almeno 
 		ECHO un file "LastScript.xml" nel path "C:\Program Files (x86)\LightingService\script\"
 		Timeout /t 20
+		GOTO :CleanEnvironment
 	)
+
 
 ::-------------------------FUNCTION SET PROFILE-------------
 :SetProfile
@@ -191,14 +199,16 @@ ECHO [0] "Carica nuovo profilo RGB"
 
 	GOTO :CleanEnvironment
 
+
 ::-------------------------FUNCTION RENAME PROFILE----------
 :RenameProfile
 	ECHO [0m
 	ECHO Inserire il nuovo nome del profilo RGB [33m
 	SET /P newfilename=
 	ECHO [0m
-	REN %ProfilePath%\!FileName[%profileID%]! "%newfilename%".xml	
+	REN %ProfilePath%\"!FileName[%profileID%]!" "%newfilename%".xml	
 	GOTO :CleanEnvironment
+
 
 ::-------------------------FUNCTION DELETE PROFILE----------
 :DeleteProfile
@@ -209,53 +219,26 @@ ECHO [0] "Carica nuovo profilo RGB"
 	) ELSE IF /I "%deleteYesNo%" EQU "n" ( GOTO :CleanEnvironment
 	) ELSE IF /I "%deleteYesNo%" EQU "Y" (
 		DEL %ProfilePath%\"!FileName[%profileID%]!" 
-		SET /a "idx"=0 
-		test&cls
-		GOTO :InitialPoint
+		GOTO :CleanEnvironment
 	) ELSE IF /I "%deleteYesNo%" EQU "y" (
 		DEL %ProfilePath%\"!FileName[%profileID%]!" 
-		SET /a "idx"=0 
-		test&cls
-		GOTO :InitialPoint
+		GOTO :CleanEnvironment
 	) ELSE (
 		GOTO :DeleteProfile 
 	)	
 
-::-------------------------FUNCTION RE-EXECUTE PROGRAM------
-:ReExecuteProgramChoice
-	SET /P c=Vuoi rieseguire [Y/N]? 
-	IF /I "%c%" EQU "N" ( GOTO :ExitProcedure )
-	) ELSE IF /I "%c%" EQU "n" ( GOTO :ExitProcedure 
-	) ELSE IF /I "%c%" EQU "Y" ( GOTO :CleanEnvironment
-	) ELSE IF /I "%c%" EQU "y" ( GOTO :CleanEnvironment
-	) ELSE (
-		GOTO :ReExecuteProgramChoice
-	)
 
 ::-------------------------FUNCTION FIST PROFILE CHOICE-----
 :FirstProfileChoice
-	set /P a=Vuoi caricare il tuo primo profilo RGB [Y/N]? 
-	IF /I "%a%" EQU "Y" goto :LoadFirstProfile
-	) ELSE IF /I "%a%" EQU "N" ( GOTO :ExitProcedure
-	) ELSE IF /I "%a%" EQU "y" ( GOTO :LoadFirstProfile
-	) ELSE IF /I "%a%" EQU "n" ( GOTO :ExitProcedure
+	SET /P a=Vuoi caricare il tuo primo profilo RGB [Y/N]? 
+	IF /I "%a%" EQU "Y" ( GOTO :LoadNewProfile
+	) ELSE IF /I "%a%" EQU "N" ( GOTO :ExitProcedure 
+	) ELSE IF /I "%a%" EQU "y" ( GOTO :LoadNewProfile
+	) ELSE IF /I "%a%" EQU "n" ( GOTO :ExitProcedure 
 	) ELSE (
 		GOTO :FirstProfileChoice
 	)
 
-:LoadFirstProfile
-	IF EXIST C:\"Program Files (x86)"\LightingService\script\LastScript.xml (
-		COPY C:\"Program Files (x86)"\LightingService\script\LastScript.xml %ProfilePath%\LastScript.xml
-		ECHO [32m[OK][0m - File Copiato
-		ECHO [0m
-		GOTO :InitialPoint		
-	) ELSE (
-		ECHO [33m[ATTENZIONE][0m - Nessun profilo RGB esistente
-		ECHO [0m
-		ECHO Assicurarsi di aver installato "Armoury Crate" e che esista almeno 
-		ECHO un file "LastScript.xml" nel path "C:\Program Files (x86)\LightingService\script"
-		Timeout /t 20
-	)
 
 ::-------------------------FUNCTION CLEAN ENVIRONMENT-------
 :CleanEnvironment

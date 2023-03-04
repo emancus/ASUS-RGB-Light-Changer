@@ -23,6 +23,10 @@ the Armory Crate application again every time you want to change configuration!
 	<br>
 </div>
 
+## How it works?
+Call the .bat file with Admin Rights (needed for load a RGB Profile and restart "Lighting Services") and follow the instruction on screen.
+You can call the .bat file with `-v` parameter for a verbose mode!
+
 [Enrico Mancuso]: https://github.com/HidroSaphire
 [Batch]: https://en.wikipedia.org/wiki/Batch_file
 [Microsoft Windows]: https://en.wikipedia.org/wiki/Windows_11
